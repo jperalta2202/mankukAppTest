@@ -102,6 +102,7 @@ export class B2CClient {
 
   /** Returns true if a user is signed in, false if not */
   async isSignedIn() {
+    console.log(this.policyUrls);
     const signInAccount = await this.getAccountForPolicy(
       this.policyUrls.signInSignUp,
     );

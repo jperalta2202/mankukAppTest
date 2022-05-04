@@ -1,14 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import PublicClientApplication from 'react-native-msal';
 
 import {
   SafeAreaView,
-  ScrollView,
   StatusBar,
   StyleSheet,
   Text,
   useColorScheme,
-  View,
   Button,
 } from 'react-native';
 
@@ -46,29 +43,17 @@ const App = () => {
         console.log('hola1');
         await b2cClient.init();
         console.log('hola2');
-        /* const isSignedIn = await b2cClient.isSignedIn();
+        const isSignedIn = await b2cClient.isSignedIn();
         console.log('hola3');
         if (isSignedIn) {
           setAuthResult(await b2cClient.acquireTokenSilent({scopes}));
-        } */
+        }
       } catch (error) {
         console.error(error);
       }
     }
     init();
   }, []);
-
-  /*   useEffect(() => {
-    async function init() {
-      try {
-        await pca.init();
-        await pca.acquireToken(scopes);
-      } catch (error) {
-        console.error('Error initializing the pca, check your config.', error);
-      }
-    }
-    init();
-  }, []); */
 
   const handleSignInPress = async () => {
     try {
@@ -83,7 +68,8 @@ const App = () => {
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <Button onPress={handleSignInPress} title="test" />
+      <Button onPress={handleSignInPress} title="Login with microsoft" />
+      {authResult && <Text>Loged in {}</Text>}
     </SafeAreaView>
   );
 };
