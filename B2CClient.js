@@ -146,8 +146,11 @@ export class B2CClient {
 
   async getAccountForPolicy(policyUrl) {
     const accounts = await this.pca.getAccounts();
-    return accounts.find(account =>
-      account.identifier.includes(policyUrl.toLowerCase()),
+    return accounts.find(
+      //account => account.identifier.includes(policyUrl.toLowerCase()),
+      account.identifier.includes(
+        'https://mankukb2c.b2clogin.com/tfp/mankukb2c.onmicrosoft.com/B2C_1_susi',
+      ),
     );
   }
 }
