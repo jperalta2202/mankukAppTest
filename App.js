@@ -1,4 +1,4 @@
-import LoginScreen from './src/views/LogginScreen';
+import LogginScreen from './src/views/LogginScreen';
 import Form from './src/views/Formulario';
 import * as React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -18,14 +18,28 @@ export default function App() {
   const Stack = createNativeStackNavigator();
 
   return (
-    <SafeAreaView>
-      <StatusBar barStyle={'light-content'} />
-      <ScrollView>
-        <View>
-          <Auth></Auth>
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Loggin"
+          component={LogginScreen}
+          options={{
+            headerStyle: {
+              backgroundColor: '#009e45',
+            },
+          }}
+        />
+        <Stack.Screen
+          name="Form"
+          component={Form}
+          options={{
+            headerStyle: {
+              backgroundColor: '#009e45',
+            },
+          }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 

@@ -2,9 +2,10 @@ import React, {useState} from 'react';
 
 import {View, StyleSheet, Image} from 'react-native';
 
+import Auth from '../components/Auth';
+
 const styles = StyleSheet.create({
   form: {
-    margin: 200,
     flex: 2,
     flexDirection: 'column',
     alignItems: 'center',
@@ -14,20 +15,20 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   image: {
-    flex: 1,
     resizeMode: 'contain',
-    width: '100%',
-    alignItems: 'center',
+    width: 400,
+    height: 200,
   },
 });
 
-const LoginScreen = ({navigation}) => {
-  const logo = require('./../../assets/logotipo_alta_Mankuk.jpg');
+const LogginScreen = ({navigation}) => {
+  const logo = require('./../../assets/Logotipo_Sin_Fondo_Mankuk.png');
 
   return (
     <View style={styles.form}>
       <Image source={logo} style={styles.image} />
+      <Auth navigation={navigation} />
     </View>
   );
 };
-export default LoginScreen;
+export default LogginScreen;

@@ -1,7 +1,5 @@
 import React, {useEffect, useState} from 'react';
 
-import Form from '../views/Formulario';
-
 import {
   SafeAreaView,
   StatusBar,
@@ -65,6 +63,8 @@ const Auth = ({navigation}) => {
       const res = await b2cClient.signIn({scopes});
       setAuthResult(res);
       setIsLogged(true);
+      alert('Ingreso éxitoso');
+      navigation.navigate('Form');
     } catch (error) {
       console.warn(error);
     }
@@ -72,8 +72,7 @@ const Auth = ({navigation}) => {
 
   return (
     <>
-      <Button onPress={handleSignInPress} title="Login with microsoft" />
-      {isLogged && <Form></Form>}
+      <Button onPress={handleSignInPress} title="Login with Microsoft" />
     </>
   );
 };

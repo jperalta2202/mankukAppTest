@@ -1,27 +1,15 @@
 import React, {useState} from 'react';
-import {View, StyleSheet, Image, Text, TextInput, Button} from 'react-native';
+import {
+  View,
+  StyleSheet,
+  Image,
+  Text,
+  TextInput,
+  Button,
+  ScrollView,
+} from 'react-native';
 import NumericInput from 'react-native-numeric-input';
 import {sendForm} from '../../api';
-
-const styles = StyleSheet.create({
-  form: {
-    marginTop: 1300,
-    margin: 150,
-    flex: 2,
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'space-around',
-  },
-  formInput: {
-    margin: 10,
-  },
-  image: {
-    flex: 1,
-    resizeMode: 'contain',
-    width: '100%',
-    alignItems: 'center',
-  },
-});
 
 const Form = ({navigation}) => {
   const [projectName, setProjectName] = useState('');
@@ -59,7 +47,7 @@ const Form = ({navigation}) => {
   const [totalNumber, setTotalNumber] = useState(0);
   const [observations2, setObservations2] = useState('');
 
-  const logo = require('./../../assets/logotipo_alta_Mankuk.jpg');
+  const logo = require('./../../assets/Logotipo_Sin_Fondo_Mankuk.png');
 
   const handleSubmitPress = () => {
     if (!projectName) {
@@ -243,175 +231,235 @@ const Form = ({navigation}) => {
 
   return (
     <View style={styles.form}>
-      <Text>DESCRIPCIÓN MATRIZ</Text>
-      <Image source={logo} style={styles.image} />
+      <ScrollView style={styles.scrollView}>
+        <Text style={styles.text}>DESCRIPCIÓN MATRIZ</Text>
+        <Image source={logo} style={styles.image} />
 
-      <TextInput
-        style={styles.formInput}
-        value={projectName}
-        placeholder="Nombre del Proyecto"
-        onChangeText={text => setProjectName(text)}
-      />
-      <TextInput
-        style={styles.formInput}
-        value={site}
-        placeholder="Site"
-        onChangeText={text => setSite(text)}
-      />
-      <TextInput
-        style={styles.formInput}
-        value={coordE}
-        placeholder="CoordE"
-        onChangeText={text => setCoordE(text)}
-      />
-      <TextInput
-        style={styles.formInput}
-        value={coordN}
-        placeholder="CoordN"
-        onChangeText={text => setCoordN(text)}
-      />
-      <TextInput
-        style={styles.formInput}
-        value={unit}
-        placeholder="Unit"
-        onChangeText={text => setUnit(text)}
-      />
-      <TextInput
-        style={styles.formInput}
-        value={responsibles}
-        placeholder="Responsables"
-        onChangeText={text => setResponsibles(text)}
-      />
-      <TextInput
-        style={styles.formInput}
-        value={sector}
-        placeholder="Sector"
-        onChangeText={text => setSector(text)}
-      />
-      <TextInput
-        style={styles.formInput}
-        value={dimension}
-        placeholder="Dimension"
-        onChangeText={text => setDimension(text)}
-      />
-      <TextInput
-        style={styles.formInput}
-        value={layer}
-        placeholder="Layer"
-        onChangeText={text => setLayer(text)}
-      />
-      <TextInput
-        style={styles.formInput}
-        value={level}
-        placeholder="Level"
-        onChangeText={text => setLevel(text)}
-      />
-      <TextInput
-        style={styles.formInput}
-        value={features}
-        placeholder="Features"
-        onChangeText={text => setFeatures(text)}
-      />
-      <TextInput
-        style={styles.formInput}
-        value={sedimentType}
-        placeholder="Tipo de sedimento"
-        onChangeText={text => setSedimentType(text)}
-      />
-      <TextInput
-        style={styles.formInput}
-        value={compaction}
-        placeholder="Compactación"
-        onChangeText={text => setCompaction(text)}
-      />
-      <TextInput
-        style={styles.formInput}
-        value={munshell}
-        placeholder="Código Munshell"
-        onChangeText={text => setMunshell(text)}
-      />
-      <TextInput
-        style={styles.formInput}
-        value={inclusionType}
-        placeholder="Tipo de inclusión"
-        onChangeText={text => setInclusionType(text)}
-      />
-      <TextInput
-        style={styles.formInput}
-        value={inclusionSize}
-        placeholder="Tamaño de inclusiones"
-        onChangeText={text => setInclusionSize(text)}
-      />
-      <TextInput
-        style={styles.formInput}
-        value={inclusionDensity}
-        placeholder="Densidad de inclusiones"
-        onChangeText={text => setInclusionDensity(text)}
-      />
-      <TextInput
-        style={styles.formInput}
-        value={organicMatter}
-        placeholder="Contenido de materia orgánica"
-        onChangeText={text => setOrganicMatter(text)}
-      />
-      <TextInput
-        style={styles.formInput}
-        value={humidity}
-        placeholder="Humedad"
-        onChangeText={text => setHumidity(text)}
-      />
-      <TextInput
-        style={styles.formInput}
-        value={observations1}
-        placeholder="Obersvaciones"
-        onChangeText={text => setObservations1(text)}
-      />
-      <Text>Loza</Text>
-      <NumericInput type="up-down" onChange={value => setCrockery(value)} />
-      <Text>Metal</Text>
-      <NumericInput type="up-down" onChange={value => setMetal(value)} />
-      <Text>vidrio</Text>
-      <NumericInput type="up-down" onChange={value => setGlass(value)} />
-      <Text>Ceramica</Text>
-      <NumericInput type="up-down" onChange={value => setCeramic(value)} />
-      <Text>lítico</Text>
-      <NumericInput type="up-down" onChange={value => setLithic(value)} />
-      <Text>Cuero</Text>
-      <NumericInput type="up-down" onChange={value => setLeather(value)} />
-      <Text>Textil</Text>
-      <NumericInput type="up-down" onChange={value => setTextile(value)} />
-      <Text>Osteofauna</Text>
-      <NumericInput type="up-down" onChange={value => setAnimalBones(value)} />
-      <Text>Madera</Text>
-      <NumericInput type="up-down" onChange={value => setWood(value)} />
-      <Text>Bioantropológico</Text>
-      <NumericInput type="up-down" onChange={value => setBioAntro(value)} />
-      <Text>Arqueobotánico</Text>
-      <NumericInput
-        type="up-down"
-        onChange={value => setArcheoBotanical(value)}
-      />
-      <Text>Malacológico</Text>
-      <NumericInput
-        type="up-down"
-        onChange={value => setMalacological(value)}
-      />
-      <Text>Número total de materiales</Text>
-      <NumericInput
-        placeholder="TotalNumber"
-        type="up-down"
-        onChange={value => setTotalNumber(value)}
-      />
+        <TextInput
+          style={styles.formInput}
+          value={projectName}
+          placeholder="Nombre del Proyecto"
+          onChangeText={text => setProjectName(text)}
+        />
+        <TextInput
+          style={styles.formInput}
+          value={site}
+          placeholder="Site"
+          onChangeText={text => setSite(text)}
+        />
+        <TextInput
+          style={styles.formInput}
+          value={coordE}
+          placeholder="CoordE"
+          onChangeText={text => setCoordE(text)}
+        />
+        <TextInput
+          style={styles.formInput}
+          value={coordN}
+          placeholder="CoordN"
+          onChangeText={text => setCoordN(text)}
+        />
+        <TextInput
+          style={styles.formInput}
+          value={unit}
+          placeholder="Unit"
+          onChangeText={text => setUnit(text)}
+        />
+        <TextInput
+          style={styles.formInput}
+          value={responsibles}
+          placeholder="Responsables"
+          onChangeText={text => setResponsibles(text)}
+        />
+        <TextInput
+          style={styles.formInput}
+          value={sector}
+          placeholder="Sector"
+          onChangeText={text => setSector(text)}
+        />
+        <TextInput
+          style={styles.formInput}
+          value={dimension}
+          placeholder="Dimension"
+          onChangeText={text => setDimension(text)}
+        />
+        <TextInput
+          style={styles.formInput}
+          value={layer}
+          placeholder="Layer"
+          onChangeText={text => setLayer(text)}
+        />
+        <TextInput
+          style={styles.formInput}
+          value={level}
+          placeholder="Level"
+          onChangeText={text => setLevel(text)}
+        />
+        <TextInput
+          style={styles.formInput}
+          value={features}
+          placeholder="Features"
+          onChangeText={text => setFeatures(text)}
+        />
+        <TextInput
+          style={styles.formInput}
+          value={sedimentType}
+          placeholder="Tipo de sedimento"
+          onChangeText={text => setSedimentType(text)}
+        />
+        <TextInput
+          style={styles.formInput}
+          value={compaction}
+          placeholder="Compactación"
+          onChangeText={text => setCompaction(text)}
+        />
+        <TextInput
+          style={styles.formInput}
+          value={munshell}
+          placeholder="Código Munshell"
+          onChangeText={text => setMunshell(text)}
+        />
+        <TextInput
+          style={styles.formInput}
+          value={inclusionType}
+          placeholder="Tipo de inclusión"
+          onChangeText={text => setInclusionType(text)}
+        />
+        <TextInput
+          style={styles.formInput}
+          value={inclusionSize}
+          placeholder="Tamaño de inclusiones"
+          onChangeText={text => setInclusionSize(text)}
+        />
+        <TextInput
+          style={styles.formInput}
+          value={inclusionDensity}
+          placeholder="Densidad de inclusiones"
+          onChangeText={text => setInclusionDensity(text)}
+        />
+        <TextInput
+          style={styles.formInput}
+          value={organicMatter}
+          placeholder="Contenido de materia orgánica"
+          onChangeText={text => setOrganicMatter(text)}
+        />
+        <TextInput
+          style={styles.formInput}
+          value={humidity}
+          placeholder="Humedad"
+          onChangeText={text => setHumidity(text)}
+        />
+        <TextInput
+          style={styles.formInput}
+          multiline={true}
+          numberOfLines={5}
+          value={observations1}
+          placeholder="Obersvaciones"
+          onChangeText={text => setObservations1(text)}
+        />
+        <View style={styles.numeric}>
+          <Text style={styles.text2}>Loza</Text>
+          <NumericInput type="up-down" onChange={value => setCrockery(value)} />
+          <Text style={styles.text2}>Metal</Text>
+          <NumericInput type="up-down" onChange={value => setMetal(value)} />
+          <Text style={styles.text2}>vidrio</Text>
+          <NumericInput type="up-down" onChange={value => setGlass(value)} />
+          <Text style={styles.text2}>Ceramica</Text>
+          <NumericInput type="up-down" onChange={value => setCeramic(value)} />
+          <Text style={styles.text2}>lítico</Text>
+          <NumericInput type="up-down" onChange={value => setLithic(value)} />
+          <Text style={styles.text2}>Cuero</Text>
+          <NumericInput type="up-down" onChange={value => setLeather(value)} />
+          <Text style={styles.text2}>Textil</Text>
+          <NumericInput type="up-down" onChange={value => setTextile(value)} />
+          <Text style={styles.text2}>Osteofauna</Text>
+          <NumericInput
+            type="up-down"
+            onChange={value => setAnimalBones(value)}
+          />
+          <Text style={styles.text2}>Madera</Text>
+          <NumericInput type="up-down" onChange={value => setWood(value)} />
+          <Text style={styles.text2}>Bioantropológico</Text>
+          <NumericInput type="up-down" onChange={value => setBioAntro(value)} />
+          <Text style={styles.text2}>Arqueobotánico</Text>
+          <NumericInput
+            type="up-down"
+            onChange={value => setArcheoBotanical(value)}
+          />
+          <Text style={styles.text2}>Malacológico</Text>
+          <NumericInput
+            type="up-down"
+            onChange={value => setMalacological(value)}
+          />
+          <Text style={styles.text2}>Número total de materiales</Text>
+          <NumericInput
+            placeholder="TotalNumber"
+            type="up-down"
+            onChange={value => setTotalNumber(value)}
+          />
+        </View>
 
-      <TextInput
-        style={styles.formInput}
-        value={observations2}
-        placeholder="Observaciones de los materiales"
-        onChangeText={text => setObservations2(text)}
-      />
-      <Button onPress={handleSubmitPress} title="Submit" />
+        <TextInput
+          style={styles.formInput}
+          multiline={true}
+          numberOfLines={5}
+          value={observations2}
+          placeholder="Observaciones de los materiales"
+          onChangeText={text => setObservations2(text)}
+        />
+        <Button onPress={handleSubmitPress} title="Submit" />
+      </ScrollView>
     </View>
   );
 };
 
 export default Form;
+
+const styles = StyleSheet.create({
+  form: {
+    justifyContent: 'center',
+  },
+  formInput: {
+    margin: 5,
+    fontSize: 20,
+    marginHorizontal: 10,
+    borderColor: 'gray',
+    width: '90%',
+    borderWidth: 1,
+    borderRadius: 10,
+  },
+  image: {
+    resizeMode: 'contain',
+    width: 400,
+    height: 200,
+  },
+  scrollView: {
+    marginHorizontal: 0,
+  },
+  text: {
+    fontSize: 30,
+  },
+  text2: {
+    fontSize: 25,
+    marginTop: 20,
+  },
+  numeric: {
+    flex: 1,
+    alignItems: 'center',
+  },
+});
+
+const styles2 = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  scrollView: {
+    backgroundColor: 'pink',
+    marginHorizontal: 20,
+  },
+  borderColor: 'gray',
+  width: '100%',
+  borderWidth: 1,
+  borderRadius: 10,
+  padding: 10,
+});
