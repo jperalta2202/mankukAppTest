@@ -102,7 +102,6 @@ export class B2CClient {
 
   /** Returns true if a user is signed in, false if not */
   async isSignedIn() {
-    console.log(this.policyUrls);
     const signInAccount = await this.getAccountForPolicy(
       this.policyUrls.signInSignUp,
     );
@@ -146,14 +145,13 @@ export class B2CClient {
 
   async getAccountForPolicy(policyUrl) {
     const accounts = await this.pca.getAccounts();
-    return accounts.find(
-      //account => account.identifier.includes(policyUrl.toLowerCase()),
-      account.identifier.includes(
-        'https://mankukb2c.b2clogin.com/tfp/mankukb2c.onmicrosoft.com/B2C_1_susi',
-      ),
+    return accounts.find(account =>
+      account.identifier.includes(policyUrl.toLowerCase()),
     );
   }
 }
+
+//account.identifier.includes(policyUrl.toLowerCase()),
 
 function makeAuthority(authorityBase, policyName) {
   return `${authorityBase}/${policyName}`;

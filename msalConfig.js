@@ -4,8 +4,7 @@ export const b2cConfig = {
     authorityBase:
       'https://mankukb2c.b2clogin.com/tfp/mankukb2c.onmicrosoft.com/',
     policies: {
-      signInSignUp:
-        'https://mankukb2c.b2clogin.com/tfp/mankukb2c.onmicrosoft.com/B2C_1_susi',
+      signInSignUp: 'B2C_1_susi',
       //passwordReset: 'B2C_1_PasswordReset',
     },
     // redirectUri: Platform.select({ default: undefined }),
