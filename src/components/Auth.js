@@ -27,26 +27,12 @@ const Auth = ({navigation}) => {
   const [authResult, setAuthResult] = useState(null);
 
   const [isLogged, setIsLogged] = useState(false);
-  /*   const config = {
-    auth: {
-      clientId: 'f94ac460-560f-48f2-957e-d7e8a2877f0b',
-      authority:
-        'https://mankukb2c.b2clogin.com/tfp/mankukb2c.onmicrosoft.com/B2C_1_SISOPolicy',
-    },
-  };
-  const scopes = ['https://mankukb2c.onmicrosoft.com/mankuk-api/api.read'];
-
-  // Initialize the public client application:
-  const pca = new PublicClientApplication(config); */
 
   useEffect(() => {
     async function init() {
       try {
-        console.log('hola1');
         await b2cClient.init();
-        console.log('hola2');
         const isSignedIn = await b2cClient.isSignedIn();
-        console.log('hola3');
         if (isSignedIn) {
           setAuthResult(await b2cClient.acquireTokenSilent({scopes}));
         }
@@ -55,14 +41,16 @@ const Auth = ({navigation}) => {
       }
     }
     init();
-  }, []);
+  }, [isLogged, authResult]);
 
   const handleSignInPress = async () => {
+    console.log('loggin');
     try {
       console.log({scopes});
       const res = await b2cClient.signIn({scopes});
       setAuthResult(res);
       setIsLogged(true);
+      //await AsyncStorage.setItem('LOGGIN_INFO', JSON.stringify(res))
       alert('Ingreso éxitoso');
       navigation.navigate('Form');
     } catch (error) {
@@ -70,9 +58,26 @@ const Auth = ({navigation}) => {
     }
   };
 
+  const handleSignOutPress = async () => {
+    try {
+      setAuthResult(null);
+      setIsLogged(false);
+      //await AsyncStorage.setItem('LOGIN_INFO', 'NULL')
+    } catch (error) {
+      console.warn(error);
+    }
+  };
+
   return (
     <>
-      <Button onPress={handleSignInPress} title="Login with Microsoft" />
+      {!isLogged ? (
+        <Button onPress={handleSignInPress} title="Login with Microsoft" />
+      ) : (
+        <>
+          <Text>You are logged in</Text>
+          <Button onPress={handleSignOutPress} title="Log Out" />
+        </>
+      )}
     </>
   );
 };
